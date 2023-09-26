@@ -1,0 +1,31 @@
+# Leitura de i
+    li $v0, 5         # Código da syscall para leitura de inteiro
+    syscall           # Chama a syscall
+    move $t0, $v0     # Move o valor lido para $t0
+
+    # Leitura de j
+    li $v0, 5         # Código da syscall para leitura de inteiro
+    syscall           # Chama a syscall
+    move $t1, $v0     # Move o valor lido para $t1
+
+    # Leitura de N
+    li $v0, 5         # Código da syscall para leitura de inteiro
+    syscall           # Chama a syscall
+    move $t2, $v0     # Move o valor lido para $t2
+
+    # Cálculo do endereço de A[i]
+    mul $t0, $t0, 4   # Multiplica i por 4 para obter o deslocamento em bytes
+    add $t0, $t0, $s0 # Adiciona o deslocamento ao endereço base de A
+
+    # Cálculo do endereço de A[j]
+    mul $t1, $t1, 4   # Multiplica j por 4 para obter o deslocamento em bytes
+    add $t1, $t1, $s0 # Adiciona o deslocamento ao endereço base de A
+
+    # Leitura de A[j]
+    lw $t3, 0($t1)    # Carrega o valor de A[j]
+
+    # Soma de A[j] e N
+    add $t3, $t3, $t2 # Soma N a A[j]
+
+    # Escrita de A[j] + N em A[i]
+    sw $t3, 0($t0)    # Armazena o resultado em A[i]
