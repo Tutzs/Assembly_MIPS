@@ -29,3 +29,5 @@
 
     # Escrita de A[j] + N em A[i]
     sw $t3, 0($t0)    # Armazena o resultado em A[i]
+
+    
