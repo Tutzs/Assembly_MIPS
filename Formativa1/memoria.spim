@@ -12,13 +12,13 @@ move $t2, $v0
 
 li $t3, 4
 # relacionado a I
-mul $t0, $t0, $t3
-#sll $t0, $t0, 4
+#mul $t0, $t0, $t3
+sll $t0, $t0, 2
 add $t0, $t0, $s0
 
 # relacionado a J
-mul $t1, $t1, $t3
-#sll $t1, $t1, 4
+#mul $t1, $t1, $t3
+sll $t1, $t1, 2
 add $t1, $t1, $s0
 
 #A[j]
