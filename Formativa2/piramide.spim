@@ -1,0 +1,30 @@
+.data
+
+.text
+main:
+li $v0, 5 #tamanho da piramide
+syscall
+move $t0, $v0
+
+addi $t1, $zero, 1 # inicializando k
+addi $t2, $zero, 1 # inicializando i
+addi $t3, $zero, 1 # inicializando j
+
+loop: 
+    slt $t4, $t1, $t0
+    beq $t4, $zero, if
+    laco: 
+        slt $t5, $t2, $t1
+        beq $t5, $zero, if2
+        move $a0, $t1
+        li $v0, 1
+        syscall
+        addi $t2, $t2, 1
+        j laco
+    addi $t1, $t1, 1
+
+if: 
+if2: j loop
+
+li $v0, 10
+syscall

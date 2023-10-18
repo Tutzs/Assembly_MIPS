@@ -1,0 +1,71 @@
+.data
+    nota1: .asciiz "SR\n"
+    nota2: .asciiz "II\n"
+    nota3: .asciiz "MI\n"
+    nota4: .asciiz "MM\n"
+    nota5: .asciiz "MS\n"
+    nota6: .asciiz "SS\n"
+
+.text
+main:
+li $v0, 5
+syscall
+move $t0, $v0
+
+beq $t0, $zero, if
+
+slti $t1, $t0, 30
+bne $t1, $zero if1
+
+slti $t2, $t0, 50
+bne $t2, $zero if2
+
+slti $t3, $t0, 70
+bne $t3, $zero if3
+
+slti $t4, $t0, 90
+bne $t4, $zero if4
+
+slti $t5, $t0, 101
+bne $t5, $zero if5
+
+if: 
+    li $v0, 4
+    la $a0, nota1
+    syscall
+j Exit
+
+if1: 
+    li $v0, 4
+    la $a0, nota2
+    syscall
+j Exit
+
+if2: 
+    li $v0, 4
+    la $a0, nota3
+    syscall
+j Exit
+
+if3: 
+    li $v0, 4
+    la $a0, nota4
+    syscall
+j Exit
+
+if4: 
+    li $v0, 4
+    la $a0, nota5
+    syscall
+j Exit
+
+if5: 
+    li $v0, 4
+    la $a0, nota6
+    syscall
+j Exit
+
+Exit:
+
+li $v0, 10
+syscall

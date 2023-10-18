@@ -18,12 +18,16 @@ move $t2, $v0
 add $s0, $t1, $t2 # somando idade dos filhos
 sub $s1, $t0, $s0 # subtraindo idade dos filhos somados com a idade da mae
 
-blt $t1, $s1, if
-blt $t2, $t1, if1
+slt $t8, $t1, $s1
+bne $t8, $zero, if
+
+slt $t9, $t2, $t1 
+bne $t9, $zero, if1
 
 move $a0, $t2
 li $v0, 1
 syscall
+
 
 li $v0, 10
 syscall
@@ -40,6 +44,7 @@ if1:
     syscall
 j Exit
 
-Exit: 
+Exit:
+
 li $v0, 10
 syscall
