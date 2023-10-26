@@ -2,29 +2,35 @@
 
 .text
 main:
+
 li $v0, 5 #tamanho da piramide
 syscall
 move $t0, $v0
 
-addi $t1, $zero, 1 # inicializando k
-addi $t2, $zero, 1 # inicializando i
-addi $t3, $zero, 1 # inicializando j
+li $t1, 0 # k
+li $t2, 0 # i
+li $t3, 0 # j
 
 loop: 
-    slt $t4, $t1, $t0
+    slt $t4, $t1, $t0 # k < n
     beq $t4, $zero, if
     laco: 
-        slt $t5, $t2, $t1
+        slt $t5, $t2, $t1 # i < k
         beq $t5, $zero, if2
-        move $a0, $t1
         li $v0, 1
+        move $a0, $t1
+        syscall
+        li $v0, 11
+        li $a0, 10
         syscall
         addi $t2, $t2, 1
         j laco
-    addi $t1, $t1, 1
-
 if: 
-if2: j loop
+    li $v0, 10
+    syscall
+if2: 
+    addi $t1, $t1, 1
+    j loop
 
 li $v0, 10
 syscall
