@@ -1,0 +1,41 @@
+.data
+.text
+main:
+li $s0,10      # Carrega o valor 3 no registrador $s0
+  
+li $s1,2  # Carrega o valor 2 no registrador $s1
+
+  # Carrega argumentos para a função media:
+  move $a0, $s0  # Move o valor de $s0 para $a0 (primeiro argumento)
+  move $a1, $s1  # Move o valor de $s1 para $a1 (segundo argumento)
+
+  # Chama o procedimento "media":
+  jal media       # Jump and Link - Salva o endereço da próxima instrução no registrador $ra e pula para o procedimento "media"
+
+  # Imprime o resultado da função:
+  move $a0, $v0  # Move o valor de $a0 para $v0 (retorno da função)
+  li $v0,1       # Carrega o código do serviço de impressão (1 para imprimir inteiro)
+  syscall        # Chama o sistema para imprimir o valor em $v0
+
+  li $v0,11      # Carrega o código do serviço de impressão (11 para imprimir uma quebra de linha)
+  li $a0,10      # Carrega o valor 10 (código ASCII para nova linha) em $a0
+  syscall        # Chama o sistema para imprimir a nova linha
+
+  li $v0,10      # Carrega o código de término do programa (10 para sair)
+  syscall        # Chama o sistema para encerrar o programa
+
+media:
+  addi $sp, $sp, -4 # Salva o endereço de retorno na pilha (subtrai 4 do ponteiro de pilha)
+  sw $ra, 0($sp)    # Armazena o endereço de retorno ($ra) na pilha
+
+  jal soma          # Chama o procedimento "soma"
+  srl $v0, $v0, 1   # Shift right logical para dividir o resultado por 2
+
+  lw $ra, 0($sp)    # Carrega o endereço de retorno de volta de onde estava na pilha
+  addi $sp, $sp, 4  # Restaura o valor da pilha (adiciona 4 ao ponteiro de pilha)
+
+  jr $ra            # Retorna ao chamador, utilizando o endereço de retorno em $ra
+
+soma:
+  add $v0, $a0, $a1 # Soma os valores de $a0 e $a1 e armazena o resultado em $v0
+  jr $ra            # Retorna ao chamador, utilizando o endereço de retorno em $ra

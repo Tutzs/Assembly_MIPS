@@ -1,4 +1,5 @@
 .data
+space: .byte ' '
 
 .text
 main:
@@ -7,30 +8,74 @@ li $v0, 5 #tamanho da piramide
 syscall
 move $t0, $v0
 
-li $t1, 0 # k
-li $t2, 0 # i
-li $t3, 0 # j
+li $v0, 11
+li $a0, 10
+syscall
 
+li $t1, 1 # k = 0
 loop: 
-    slt $t4, $t1, $t0 # k < n
-    beq $t4, $zero, if
-    laco: 
-        slt $t5, $t2, $t1 # i < k
-        beq $t5, $zero, if2
+    #slt $t4, $t1, $t0 # k < n
+    #beq $t4, $zero, if
+    bgt $t1, $t0, endLoop # k > n
+    li $t2, 1 # i = 0
+    lacoInterno: 
+        #slt $t5, $t2, $t1 # i < k
+        #beq $t5, $zero, if2
+        bgt $t2, $t1, endLacoInterno # se i > k, termino laco
+        # print do 0 antes do numero
         li $v0, 1
-        move $a0, $t1
+        move $a0, $zero
         syscall
+        # print do k
+        li $v0, 1 
+        move $a0, $t1 
+        syscall
+        # print espaço
+        li $v0, 4 
+        la $a0, space
+        syscall
+        addi $t2, $t2, 1 # incremento do i
+        j lacoInterno
+    endLacoInterno:
         li $v0, 11
         li $a0, 10
         syscall
-        addi $t2, $t2, 1
-        j laco
-if: 
-    li $v0, 10
-    syscall
-if2: 
-    addi $t1, $t1, 1
-    j loop
+        addi $t1, $t1, 1 # incremento do k
+        j loop
+endLoop:
+li $v0, 11
+li $a0, 10
+syscall
+
+#move $t3, $zero # j = 0
+li $t3, 1
+piramide2: 
+    bgt $t3, $t0, endPiramide2 # j >= n
+    #move $t4, $zero # x = 0
+    li $t4, 1
+    loopInterno2:
+        bgt $t4, $t3, endLoop2 # x >= j
+        # print do 0 antes do numero
+        li $v0, 1
+        move $a0, $zero
+        syscall
+        # print do x
+        li $v0, 1
+        move $a0, $t4
+        syscall
+        # print space
+        li $v0, 4
+        la $a0, space
+        syscall
+        addi $t4, $t4, 1 # incremento do x
+        j loopInterno2
+    endLoop2:
+        li $v0, 11
+        li $a0, 10
+        syscall
+        addi $t3, $t3, 1 # incremento do j
+        j piramide2
+endPiramide2:
 
 li $v0, 10
 syscall

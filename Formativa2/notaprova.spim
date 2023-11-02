@@ -14,7 +14,7 @@ move $t0, $v0
 
 beq $t0, $zero, if
 
-slti $t1, $t0, 30
+slti $t1, $t0, 30 #67 < 30
 bne $t1, $zero if1
 
 slti $t2, $t0, 50
