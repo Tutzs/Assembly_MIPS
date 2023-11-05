@@ -18,16 +18,16 @@ move $t2, $v0
 
 beq $t0, $zero, somaSem # se t0 == 0 faço soma sem sinal
 
-addu $t5, $t1, $t2 
+addu $t4, $t1, $t2 
 xor $t3, $t1, $t2 
 slt $t3, $t3, $zero # t3 < 0
 bne $t3, $zero, semOverflow
 
-xor $t3, $t0, $t1
+xor $t3, $t4, $t1
 slt $t3, $t3, $zero
 bne $t3, $zero, Overflow
 
-#j semOverflow
+j semOverflow
 
 somaSem:
     addu $t4, $t1, $t2
@@ -40,33 +40,33 @@ somaSem:
     li $v0, 1
     syscall
 
-    #li $v0, 11
-    #li $a0, 10
-    #syscall
+    li $v0, 11
+    li $a0, 10
+    syscall
 
     li $v0, 10 
     syscall
 
 Overflow:
-    li $v0, 4
     la $a0, msg
+    li $v0, 4
     syscall
 
-    #li $v0, 11
-    #li $a0, 10
-    #syscall
+    li $v0, 11
+    li $a0, 10
+    syscall
     
     li $v0, 10
     syscall
 
 semOverflow:
-    move $a0, $t5
+    move $a0, $t4
     li $v0, 1
     syscall
 
-    #li $v0, 11
-    #li $a0, 10
-    #syscall
+    li $v0, 11
+    li $a0, 10
+    syscall
 
 li $v0, 10
 syscall
