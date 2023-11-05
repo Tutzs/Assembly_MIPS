@@ -1,6 +1,4 @@
-.data
+.data 
 
 .text
 main:
-
-li $v0

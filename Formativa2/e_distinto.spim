@@ -1,0 +1,32 @@
+elemDistintos:
+
+move $v0, $zero # contador
+li $t0, -1 
+move $t1, $zero # i = 0
+
+loop:
+    bge $t1, $a1, out # i >= qtd de elementos no vetor 
+    # a1 = 10
+    # 1 1 2 2 5 5 5 5 7 8
+    lw $t2, 0($a0)
+    
+    bne $t2, $t0, conta
+
+    addi $a0, $a0, 4 # incremento do vetor
+    addi $t1, $t1, 1 # incremento do i
+
+    j loop
+
+conta:
+    addi $v0, $v0, 1 # incremento do contador
+
+    move $t0, $t2
+
+    addi $a0, $a0, 4 # incremento do vetor
+    addi $t1, $t1, 1 # incremento do i
+
+    j loop
+
+out:
+    jr $ra
+
