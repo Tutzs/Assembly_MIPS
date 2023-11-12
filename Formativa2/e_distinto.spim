@@ -1,32 +1,36 @@
 elemDistintos:
 
-move $v0, $zero # contador
-li $t0, -1 
+move $v0, $zero # contador de numeros distintos
+li $t0, -1      # t0 usado para comparacao 
 move $t1, $zero # i = 0
 
 loop:
-    bge $t1, $a1, out # i >= qtd de elementos no vetor 
-    # a1 = 10
-    # 1 1 2 2 5 5 5 5 7 8
-    lw $t2, 0($a0)
+    # a0 = endereco base do vetor
+    # a1 = qtd de elementos do vetor
+    bge $t1, $a1, out # se i >= qtd de elementos no vetor 
+    # exemplo de entrada a1 = 10
+    # exemplo de entrada 1 1 2 2 5 5 5 5 7 8
+    lw $t2, 0($a0) # pegando o primeiro elemento do vetor e colcoando em t2
     
-    bne $t2, $t0, conta
+    bne $t2, $t0, conta # se t2 diferente de t0, vou p conta, senao, continuo
 
-    addi $a0, $a0, 4 # incremento do vetor
+    addi $a0, $a0, 4 # incremento do vetor de 4 em 4, pois é inteiro
     addi $t1, $t1, 1 # incremento do i
 
-    j loop
+    j loop # jump p loop
 
 conta:
-    addi $v0, $v0, 1 # incremento do contador
+    addi $v0, $v0, 1 # incremento do contador falando que tem numeros distintos
 
-    move $t0, $t2
+    move $t0, $t2 # o elemento do vetor que esta em t2 vai pra t0, para na proxima iteracao comparar com t0
 
-    addi $a0, $a0, 4 # incremento do vetor
+    addi $a0, $a0, 4 # incremento do vetor de 4 em 4
     addi $t1, $t1, 1 # incremento do i
 
-    j loop
+    # jump p loop
+    j loop 
 
 out:
+    # volta p quem chamou o procedimento
     jr $ra
 

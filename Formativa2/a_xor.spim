@@ -7,49 +7,57 @@ li $v0, 5 # n
 syscall 
 move $t0, $v0 
 
-li $t1, 0 # i
+li $t1, 0 # i = 0
 
-while:
+loop:
     slt $t2, $t1, $t0 # i < n?
-    beq $t2, $zero, exit
+    beq $t2, $zero, exit # se t2 == 0, vai p exit
 
-    li $v0, 8
+    li $v0, 8 # lendo minha entrada como string
     la $a0, vetor 
     li $a1, 400
     syscall
 
     la $t3, vetor
 
-    lb $t4, 0($t3)
-    lb $t5, 2($t3)
+    # exemplo: entrada 1 2
+    lb $t4, 0($t3) # pegando o primeiro byte da string 1, ai o segundo byte da string é um espaço, ai ignoro ele e vou p terceiro byte
+    lb $t5, 2($t3) # pegando o terceiro byte da string 2
+ 
+    beq $t4, $t5, iguais # se t4 == t5 sao iguais
 
-    beq $t4, $t5, iguais
-
-    li $a0, 2
+    # se veio pra ca é pq sao diferentes, ai printo numero 2
+    li $a0, 2 
     li $v0, 1
     syscall
     
-    addi $t1, $t1, 1
+    addi $t1, $t1, 1 # incremento meu i
     
+    # print de \n
     li $v0, 11
     li $a0, 10
     syscall
 
-    j while
+    # jump p loop dnv
+    j loop
 
 iguais:
+    # se forem iguais, printo numero 1
     li $a0, 1
     li $v0, 1
     syscall
     
-    addi $t1, $t1, 1
+    addi $t1, $t1, 1 # incremento do i 
 
+    # print do \n
     li $v0, 11
     li $a0, 10
     syscall
 
-    j while
+    # jump p loop
+    j loop
     
 exit: 
+    # acabo o programa
     li $v0, 10
     syscall

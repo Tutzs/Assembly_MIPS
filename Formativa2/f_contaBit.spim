@@ -2,20 +2,24 @@
 #
 #.text
 #main:
+## lendo meu numero
 #li $v0, 5
 #syscall
 #move $a0, $v0
 #
-#jal contaBits
+#jal contaBits # chamando o procedimento
 #
-#move $a0, $v1
+## print do numero
+#move $a0, $v0
 #li $v0, 1
 #syscall
 #
+## print do \n
 #li $v0, 11
 #li $a0, 10
 #syscall
 #
+## fecho o programa
 #li $v0, 10 
 #syscall
 
@@ -23,13 +27,17 @@ contaBits:
 move $t1, $zero # contador inicializado em 0
 
 loop:
-    beq $a0, $zero, out
-    andi $t2, $a0, 1
-    add $t1, $t1, $t2
-    srl $a0, $a0, 1
+    # a0 é meu inteiro de entrada
+    beq $a0, $zero, out # se a0 == 0, vou p saída
+    
+    andi $t2, $a0, 1 # faço uma and de a0 com o numero 1, para ver se o bit menos significativo é 1 ou 0 
 
-    j loop
+    add $t1, $t1, $t2 # soma entre meu contador e resultado da and
+
+    srl $a0, $a0, 1 # dou shift a direita no meu a0 em uma unidade
+
+    j loop # jump p loop
 
 out:
-    move $v0, $t1   
-    jr $ra
+    move $v0, $t1 # meu contador que estava em t1 vai pra v0
+    jr $ra # jump p quem chamou a funcao

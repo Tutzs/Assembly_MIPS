@@ -5,49 +5,54 @@
 .text
 main:
 
+# lendo n
 li $v0 5
 syscall
 move $t0, $v0
 
+# lendo string das respostas certas
 li $v0, 8
 la $a0, gabarito
 li $a1, 400
 syscall
-la $t1, gabarito
+la $t1, gabarito # passando a string p um registrador
 
+# lendo string das respostas do aluno
 li $v0, 8
 la $a0, aluno
 li $a1, 400
 syscall
-la $t2, aluno
+la $t2, aluno # passando a string p um registrador
 
 li $t5, -1 # contador 
 # abcde\0
 # abcde\0
 loop:    
-    lb $t3, 0($t1)
-    lb $t4, 0($t2)
+    lb $t3, 0($t1) # pegando o primeiro byte da string gabarito e colocando em t3
+    lb $t4, 0($t2) # pegando o primeiro byte da string aluno e colocando em t4
 
-    beq $t3, $zero, out
-    beq $t3, $t4, iguais
+    beq $t3, $zero, out # se t3 == 0, vo p saida
+    beq $t3, $t4, iguais # comparando as strings, se forem iguais vo p igual
 
-    addi $t1, $t1, 1 #incremento da string 1
-    addi $t2, $t2, 1 #incremento da string 2
+    addi $t1, $t1, 1 #incrementando a string gabarito
+    addi $t2, $t2, 1 #incrementando a string aluno
 
     j loop
 
 iguais:
     addi $t5, $t5, 1 #incremento do contador
     
-    addi $t1, $t1, 1 #incremento da string 1
-    addi $t2, $t2, 1 #incremento da string 2
+    addi $t1, $t1, 1 #incrementando a string gabarito
+    addi $t2, $t2, 1 #incrementando a string aluno
 
-    j loop
+    j loop # jump p loop
 out:
+    # print do contador
     move $a0, $t5
     li $v0, 1
     syscall
-
+    
+    # print do \n
     li $v0, 11
     li $a0, 10
     syscall

@@ -3,43 +3,52 @@
 .text
 main:
 
-li $v0, 5 # le N 5
+# lendo n 
+li $v0, 5 
 syscall
 move $t0, $v0
 
-li $v0, 5 # lendo o 'maior' numero 
+# lendo o 'maior' numero 
+li $v0, 5 
 syscall
 move $t1, $v0
 
-li $t2, 1
-
+li $t2, 1 # i = 1
 loop:
-    bge $t2, $t0, out # t2 >= t0
+    bge $t2, $t0, out # se t2 >= t0, vou p out
 
+    #lendo os outros numeros
     li $v0, 5
     syscall
     move $t3, $v0 
     
+    # se t3 > t1, vou p novoMaior
     bgt $t3, $t1, novoMaior # t3 > t1
 
+    # incremento do meu i
     addi $t2, $t2, 1
 
-    j loop
+    j loop #jump p loop
 
 novoMaior:
-    move $t1, $t3
-    addi $t2, $t2, 1
-    j loop
+    move $t1, $t3 # se o t3 > t1, estou movendo o meu t3 para t1, tendo agr t1 como meu maior numero
+
+    addi $t2, $t2, 1 #incremento do meu i 
+    
+    j loop # jump p loop
 
 out:
+    # print do maior numero
     move $a0, $t1
     li $v0, 1
     syscall
 
+    # print do \n
     li $v0, 11
     li $a0, 10
     syscall
 
+    # fecho o programa
     li $v0, 10
     syscall
 

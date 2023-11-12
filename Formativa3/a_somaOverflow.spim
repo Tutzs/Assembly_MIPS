@@ -18,28 +18,33 @@ move $t2, $v0
 
 beq $t0, $zero, somaSem # se t0 == 0 faço soma sem sinal
 
-addu $t4, $t1, $t2 
-xor $t3, $t1, $t2 
-slt $t3, $t3, $zero # t3 < 0
-bne $t3, $zero, semOverflow
+# verifica o sinal dos operandos
+addu $t4, $t1, $t2 # faço a soma
+xor $t3, $t1, $t2  # verifico se sinal de t1 e t2 sao diferentes
+slt $t3, $t3, $zero # t3 = 1 se os sinais forem diferentes
+bne $t3, $zero, semOverflow # se t3 for diferente de 0, nao ocorre overflow
 
-xor $t3, $t4, $t1
-slt $t3, $t3, $zero
-bne $t3, $zero, Overflow
+# verifica o sinal do resultado com operando
+xor $t3, $t4, $t1 # verifico se o sinal de um dos operandos e igual ao do resultado 
+slt $t3, $t3, $zero # t3 = 1 se sinal for diferente
+bne $t3, $zero, Overflow # se t3 for diferente de 0, ocorreu overflow, pois o sinal do resultado é diferente do operando
 
+# se t3 == 0 é pq n ocorreu overflow entao dou o jump p sem overflow
 j semOverflow
 
 somaSem:
-    addu $t4, $t1, $t2
+    addu $t4, $t1, $t2 # faço a soma
 
-    nor $t6, $t1, $zero
-    sltu $t6, $t6, $t2
-    bne $t6, $zero, Overflow
+    nor $t6, $t1, $zero # inverto td meu t1, t6 = 2^32 - t1 -1
+    sltu $t6, $t6, $t2 # comparo se 2^32 - t1 - 1 < t2
+    bne $t6, $zero, Overflow # se t6 for diferente de 0 ocorreu overflow, senao so continua 
 
+    # print do resultado
     move $a0, $t4
     li $v0, 1
     syscall
 
+    # print do \n
     li $v0, 11
     li $a0, 10
     syscall
@@ -48,10 +53,12 @@ somaSem:
     syscall
 
 Overflow:
+    # print da msg "overflow"
     la $a0, msg
     li $v0, 4
     syscall
 
+    # print \n
     li $v0, 11
     li $a0, 10
     syscall
@@ -60,10 +67,12 @@ Overflow:
     syscall
 
 semOverflow:
+    # print do resultado
     move $a0, $t4
     li $v0, 1
     syscall
-
+    
+    # print \n
     li $v0, 11
     li $a0, 10
     syscall

@@ -1,0 +1,48 @@
+.data
+resto: .asciiz "Resto: = "
+q: .asciiz "Quociente: = "
+.text
+main:
+li $v0, 5
+syscall
+move $t0, $v0
+
+li $v0, 5
+syscall
+move $t1, $v0
+
+div $t0, $t1
+
+mflo $t2 # quociente
+mfhi $t3 # resto
+
+li $v0, 11
+li $a0, 10
+syscall
+
+li $v0, 4
+la $a0, q
+syscall
+
+move $a0, $t2
+li $v0, 1
+syscall
+
+li $v0, 11
+li $a0, 10
+syscall
+
+li $v0, 4
+la $a0, resto
+syscall
+
+move $a0, $t3
+li $v0, 1
+syscall
+
+li $v0, 11
+li $a0, 10
+syscall
+
+li $v0, 10
+syscall
