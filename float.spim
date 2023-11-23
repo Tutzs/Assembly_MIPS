@@ -4,12 +4,12 @@
 .text
 main:
 
-lwc1 $f0, n1
-lwc1 $f1, n2
+lwc1 $f2, n1
+lwc1 $f4, n2
 
-add.s $f5, $f0, $f1
+add.s $f0, $f2, $f4
 
-move $f12, $f5
+move $f12, $f0
 li $v0, 2
 syscall
 
