@@ -1,55 +1,55 @@
-.data
-    msg: .asciiz "hi = "
-    msg1: .asciiz "lo = "
-
-.text
-main:
-
-# lendo um numero
-li $v0, 5
-syscall
-move $a0, $v0
-
-#lendo outro numero
-li $v0, 5
-syscall
-move $a1, $v0
-
-# chamando o procedimento
-jal multfac
-
-# print da msg lo
-la $a0, msg1
-li $v0, 4
-syscall
-
-# print do resultado lo
-move $a0, $t0
-li $v0, 1
-syscall
-
-# print \n
-li $v0, 11
-li $a0, 10
-syscall
-
-# print da msg hi
-la $a0, msg
-li $v0, 4
-syscall
-
-# print do resultado do hi
-move $a0, $t1
-li $v0, 1
-syscall
-
-# print \n
-li $v0, 11
-li $a0, 10
-syscall
-
-li $v0, 10
-syscall
+#.data
+#    msg: .asciiz "hi = "
+#    msg1: .asciiz "lo = "
+#
+#.text
+#main:
+#
+## lendo um numero
+#li $v0, 5
+#syscall
+#move $a0, $v0
+#
+##lendo outro numero
+#li $v0, 5
+#syscall
+#move $a1, $v0
+#
+## chamando o procedimento
+#jal multfac
+#
+## print da msg lo
+#la $a0, msg1
+#li $v0, 4
+#syscall
+#
+## print do resultado lo
+#move $a0, $t0
+#li $v0, 1
+#syscall
+#
+## print \n
+#li $v0, 11
+#li $a0, 10
+#syscall
+#
+## print da msg hi
+#la $a0, msg
+#li $v0, 4
+#syscall
+#
+## print do resultado do hi
+#move $a0, $t1
+#li $v0, 1
+#syscall
+#
+## print \n
+#li $v0, 11
+#li $a0, 10
+#syscall
+#
+#li $v0, 10
+#syscall
 
 multfac:
     mult $a0, $a1 # faço a multiplicacao entre a0 e a1
