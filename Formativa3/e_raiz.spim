@@ -1,4 +1,6 @@
 .data
+ n1: .asciiz "A raiz quadrada de "
+ n2: .asciiz " eh "
 
 .text
 main:
@@ -7,6 +9,18 @@ syscall
 mov.d $f2, $f0
 
 sqrt.d $f4, $f2
+
+li $v0, 4
+la $a0, n1
+syscall
+
+li $v0, 3
+mov.d $f12, $f2
+syscall
+
+li $v0, 4
+la $a0, n2
+syscall
 
 mov.d $f12, $f4
 li $v0, 3

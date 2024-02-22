@@ -1,8 +1,8 @@
 .data                                   
 
 .text                                   
-main:                                   #inicio para a execucao do programa
-    li $v0, 5                           #chamada de sistema para que leia um inteiro
+main:                                  
+    li $v0, 5                           
     syscall                            
     move $t2, $v0
 
