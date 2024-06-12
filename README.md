@@ -2,55 +2,16 @@
 
 Nesse repositório, você encontrará códigos em Assembly MIPS e arquivos contendo resumos do meu professor de fundamentos de arquitetura de computadores.
 
+<hr>
 <table>
     <tr>
-      <td valign="top">
-        <a href="https://github.com/Dridr1">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/Dridr1.png" height="100" />
-          <p align="center"> Adriano Fonseca </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/ailujana">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/ailujana.png" height="100" />
-          <p align="center"> Ana Julia Mendes </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/Tutzs">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/Tutzs.png" height="100" />
-          <p align="center"> Arthur Sousa </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/caua08">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/caua08.png" height="100" />
-          <p align="center"> Cauã Araujo </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/iancostag">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/iancostag.png" height="100" />
-          <p align="center"> Ian Costa </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/junioramaral22">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/junioramaral22.png" height="100" />
-          <p align="center"> Necivaldo Amaral </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/pedroluizfo">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/pedroluizfo.png" height="100" />
-          <p align="center"> Pedro Luiz </p>
-        </a>
-      </td>
-      <td valign="top">
-        <a href="https://github.com/SrFokse">
-          <img align="center" style="border-radius: 50%;" src="https://github.com/SrFokse.png" height="100" />
-          <p align="center"> Weverton Rodrigues </p>
-        </a>
-      </td>
+    <td align="center"><a href="https://github.com/Dridr1"><img style="border-radius: 60%;" src="https://github.com/Dridr1.png" width="200px;" alt=""/><br /><sub><b>Adriano Fonseca</b></sub></a><br />
+    <td align="center"><a href="https://github.com/ailujana"><img style="border-radius: 60%;" src="https://github.com/ailujana.png" width="200px;" alt=""/><br /><sub><b>Ana Julia</b></sub></a><br />
+    <td align="center"><a href="https://github.com/Tutzs"><img style="border-radius: 60%;" src="https://github.com/Tutzs.png" width="200px;" alt=""/><br /><sub><b>Arthur Sousa</b></sub></a><br />
+    <td align="center"><a href="https://github.com/caua08"><img style="border-radius: 60%;" src="https://github.com/caua08.png" width="200px;" alt=""/><br /><sub><b>Cauã Araujo</b></sub></a><br />
+    <td align="center"><a href="https://github.com/iancostag"><img style="border-radius: 60%;" src="https://github.com/iancostag.png" width="200px;" alt=""/><br /><sub><b>Ian Costa</b></sub></a><br />
+    <td align="center"><a href="https://github.com/junioramaral22"><img style="border-radius: 60%;" src="https://github.com/junioramaral22.png" width="200px;" alt=""/><br /><sub><b>Necivaldo Amaral</b></sub></a><br />
+    <td align="center"><a href="https://github.com/pedroluizfo"><img style="border-radius: 60%;" src="https://github.com/pedroluizfo.png" width="200px;" alt=""/><br /><sub><b>Pedro Luiz</b></sub></a><br />
+    <td align="center"><a href="https://github.com/SrFokse"><img style="border-radius: 60%;" src="https://github.com/SrFokse.png" width="200px;" alt=""/><br /><sub><b>Weverton Rodrigues</b></sub></a><br />
     </tr>
-  </table>
+</table>
